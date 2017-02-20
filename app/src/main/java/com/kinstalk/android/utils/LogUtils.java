@@ -46,4 +46,13 @@ public class LogUtils {
             }
         }
     }
+
+
+    public static void logE(String TAG, String msg) {
+        Log.e(TAG, logWithThreadInfo(msg));
+    }
+
+    private static String logWithThreadInfo(String msg) {
+        return "[" + Thread.currentThread().getName() + "][" + msg + "]";
+    }
 }

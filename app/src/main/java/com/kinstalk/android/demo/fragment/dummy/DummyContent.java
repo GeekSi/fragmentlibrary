@@ -30,6 +30,7 @@ public class DummyContent {
         addItem(new DummyItem("3", "SlideActivity"));
         addItem(new DummyItem("4", "CanvasView"));
         addItem(new DummyItem("5", "EditText"));
+        addItem(new DummyItem("6", "RxJava-Retrofit-Request"));
     }
 
     private static void addItem(DummyItem item) {

@@ -4,9 +4,9 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.view.menu.MenuPopupHelper;
 import android.support.v7.widget.PopupMenu;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -21,11 +21,19 @@ import com.kinstalk.android.demo.fragment.HomeFragment;
 import com.kinstalk.android.demo.fragment.SlideFragment;
 import com.kinstalk.android.demo.fragment.TestFragmentDialog;
 import com.kinstalk.android.demo.fragment.TextComputeFragment;
+import com.kinstalk.android.model.model.BaseModel;
+import com.kinstalk.android.model.model.VersionBean;
+import com.kinstalk.android.model.service.CheckVersionService;
+import com.kinstalk.android.model.utils.ComApi;
+import com.kinstalk.android.model.utils.RequestUtils;
+import com.kinstalk.android.model.utils.delegate.SimpleRequestCallback;
 import com.siqing.demotest.R;
 
 import java.lang.reflect.Field;
 
-public class DemoActivity extends AppCompatActivity implements OnFragmentInteractionListener {
+import io.reactivex.disposables.Disposable;
+
+public class DemoActivity extends BaseActivity implements OnFragmentInteractionListener {
     public String TAG = "DemoActivity";
     private FrameLayout containerBox;
     private Fragment mLastFragment;
@@ -96,6 +104,8 @@ public class DemoActivity extends AppCompatActivity implements OnFragmentInterac
         } else if (id.equals("5")) {
             EditTextFragment editTextFragment = new EditTextFragment();
             addFragment(editTextFragment);
+        } else if (id.equals("6")) {
+            checkVersion();
         }
     }
 
@@ -162,4 +172,19 @@ public class DemoActivity extends AppCompatActivity implements OnFragmentInterac
         popupMenu.show();
     }
 
+    private void checkVersion(){
+        CheckVersionService service = ComApi.getInstance().getCheckVersionService();
+        Disposable disposable = RequestUtils.excute(service.checkVersion(), new SimpleRequestCallback<BaseModel<VersionBean>>() {
+            @Override
+            public void onResult(BaseModel<VersionBean> t) {
+                Log.e(TAG, t.toString());
+            }
+
+            @Override
+            public void onComplete() {
+            }
+
+        });
+        disposables.add(disposable);
+    }
 }
