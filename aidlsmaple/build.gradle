@@ -5,10 +5,13 @@ android {
     buildToolsVersion '25.0.2'
 
     defaultConfig {
-        applicationId "com.kinstalk.android.demo.demotest"
+        applicationId "com.siqing.aidltest"
         minSdkVersion 15
         versionCode 1
         versionName "1.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
     }
     buildTypes {
         release {
@@ -20,11 +23,9 @@ android {
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
-    testCompile 'junit:junit:4.12'
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
     compile 'com.android.support:appcompat-v7:23.1.1'
-    compile 'com.squareup.retrofit2:converter-gson:2.1.0'
-    //引进Rxjava2.0
-    compile 'io.reactivex.rxjava2:rxandroid:2.0.0'
-    //log拦截器
-    compile 'com.squareup.okhttp3:logging-interceptor:3.3.0'
+    testCompile 'junit:junit:4.12'
 }

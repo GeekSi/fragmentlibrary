@@ -4,7 +4,7 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
 
-    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.CAMERA" />
 
     <application
         android:allowBackup="true"
@@ -24,16 +24,21 @@
         <activity
             android:name="com.kinstalk.android.demo.demotest.SlideActivity"
             android:theme="@android:style/Theme.Translucent.NoTitleBar"
-            android:windowSoftInputMode="adjustPan"/>
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name="com.kinstalk.android.demo.demotest.CameraActivity"
             android:theme="@android:style/Theme.Translucent.NoTitleBar"
-            android:windowSoftInputMode="adjustPan"/>
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name="com.kinstalk.android.demo.demotest.ParcelableTestActivity"
             android:theme="@android:style/Theme.Translucent.NoTitleBar"
-            android:windowSoftInputMode="adjustPan"/>
+            android:windowSoftInputMode="adjustPan" />
 
+        <service
+            android:name="com.kinstalk.android.demo.service.TranslateService"
+            android:exported="true"
+            android:enabled="true"
+            android:process=":remoute" />
     </application>
 
 </manifest>

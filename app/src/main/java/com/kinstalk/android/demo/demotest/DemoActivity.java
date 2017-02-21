@@ -71,6 +71,9 @@ public class DemoActivity extends BaseActivity implements OnFragmentInteractionL
 
         actionBar = getSupportActionBar();
 
+
+//        Intent intent = new Intent(this, TranslateService.class);
+//        startService(intent);
     }
 
     @Override
